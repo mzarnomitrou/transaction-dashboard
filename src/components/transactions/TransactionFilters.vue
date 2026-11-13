@@ -34,7 +34,7 @@ function clearFilters() {
     class="rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6"
     aria-label="Filter and sort transactions"
   >
-    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-6">
       <div class="sm:col-span-2 lg:col-span-2">
         <label for="filter-merchant" class="block text-sm font-medium text-gray-700">
           Merchant
@@ -76,13 +76,13 @@ function clearFilters() {
         </select>
       </div>
 
-      <div>
+      <div class="sm:col-span-2 lg:col-span-2">
         <label for="sort-field" class="block text-sm font-medium text-gray-700">Sort by</label>
         <div class="mt-1 flex gap-2">
           <select
             id="sort-field"
             v-model="sortField"
-            class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm"
+            class="min-w-0 flex-1 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm"
           >
             <option value="date">Date</option>
             <option value="amount">Amount</option>
@@ -90,7 +90,7 @@ function clearFilters() {
           <select
             v-model="sortDirection"
             aria-label="Sort direction"
-            class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm"
+            class="min-w-0 flex-1 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm"
           >
             <option value="desc">{{ sortField === 'date' ? 'Newest' : 'Highest' }}</option>
             <option value="asc">{{ sortField === 'date' ? 'Oldest' : 'Lowest' }}</option>
