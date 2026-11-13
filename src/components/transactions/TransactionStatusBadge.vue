@@ -15,8 +15,8 @@ const statusClasses: Record<TransactionStatus, string> = {
 <template>
   <span
     class="rounded-full px-2 py-0.5 text-xs font-medium capitalize"
-    :class="statusClasses[status]"
+    :class="statusClasses[status] ?? 'bg-gray-100 text-gray-700'"
   >
-    {{ status }}
+     {{ statusClasses[status] ? status : 'Unknown' }}
   </span>
 </template>
