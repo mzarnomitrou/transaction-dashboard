@@ -6,7 +6,7 @@ import { formatDate } from '@/helpers/formatDate'
 
 defineProps<{
   transaction: Transaction
-  accountCurrency: string
+  accountCurrency?: string
 }>()
 
 const emit = defineEmits<{
