@@ -10,6 +10,7 @@ import LoadingState from '../shared/LoadingState.vue'
 import ErrorState from '../shared/ErrorState.vue'
 import PaginationControls from '../shared/PaginationControls.vue'
 import { usePagination } from '@/composables/usePagination'
+import TransactionSort from './TransactionSort.vue'
 
 const transactionsStore = useTransactionsStore()
 const { transactions, isLoading, error, sortedTransactions } = storeToRefs(transactionsStore)
@@ -29,12 +30,14 @@ onMounted(() => {
     class="rounded-xl border border-gray-200 bg-white shadow-md"
     aria-labelledby="transactions-heading"
   >
-    <h2
-      id="transactions-heading"
-      class="border-b border-gray-200 px-4 py-3 text-base font-semibold text-gray-900 sm:px-6"
+    <div
+      class="flex flex-wrap items-center justify-between gap-3 border-b border-gray-200 px-4 py-3 sm:px-6"
     >
-      Recent transactions
-    </h2>
+      <h2 id="transactions-heading" class="text-lg font-semibold text-gray-900">
+        Recent transactions
+      </h2>
+      <TransactionSort />
+    </div>
 
     <LoadingState v-if="isLoading" message="Loading transactions..." />
 
