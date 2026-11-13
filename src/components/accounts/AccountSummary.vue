@@ -3,6 +3,8 @@ import { storeToRefs } from 'pinia'
 import { useAccountStore } from '@/stores/account'
 import { onMounted } from 'vue'
 import { formatMoney } from '@/helpers/formatMoney'
+import LoadingState from '../shared/LoadingState.vue'
+import ErrorState from '../shared/ErrorState.vue'
 
 const accountStore = useAccountStore()
 const { account, isLoading, error } = storeToRefs(accountStore)
@@ -17,10 +19,12 @@ onMounted(() => {
     class="rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6"
     aria-labelledby="account-name"
   >
-    <p v-if="isLoading">Loading account details...</p>
+    <p v-if="isLoading">
+      <LoadingState message="Loading Account Information..." />
+    </p>
 
     <p v-else-if="error" class="text-red-500">
-      {{ error }}
+      <ErrorState/>
     </p>
 
     <template v-else-if="account">

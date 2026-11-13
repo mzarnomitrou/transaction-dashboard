@@ -6,6 +6,8 @@ import { useAccountStore } from '@/stores/account'
 import type { Transaction } from '@/types/transaction'
 import TransactionItem from './TransactionItem.vue'
 import TransactionDetails from './TransactionDetails.vue'
+import LoadingState from '../shared/LoadingState.vue'
+import ErrorState from '../shared/ErrorState.vue'
 
 const transactionsStore = useTransactionsStore()
 const { transactions, isLoading, error, sortedTransactions } = storeToRefs(transactionsStore)
@@ -32,15 +34,18 @@ onMounted(() => {
       Recent transactions
     </h2>
 
-    <p v-if="isLoading" class="px-4 py-8 text-center text-gray-500 sm:px-6">
-      Loading transactions…
+    <p v-if="isLoading">
+      <LoadingState message="Loading Transactions..." />
     </p>
 
     <p v-else-if="error" class="px-4 py-8 text-center text-red-600 sm:px-6">
-      {{ error }}
+      <ErrorState />
     </p>
 
-    <p v-else-if="transactions.length === 0" class="px-4 py-8 text-center text-gray-500 sm:px-6">
+    <p
+      v-else-if="sortedTransactions.length === 0"
+      class="px-4 py-8 text-center text-gray-500 sm:px-6"
+    >
       No transactions yet.
     </p>
 
