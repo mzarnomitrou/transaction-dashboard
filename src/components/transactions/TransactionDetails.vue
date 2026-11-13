@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
-import type { Transaction } from '@/types/transaction'
+import { type Transaction, TRANSACTION_TYPE_LABELS } from '@/types/transaction'
 import MoneyAmount from '@/components/shared/MoneyAmount.vue'
 import TransactionStatusBadge from './TransactionStatusBadge.vue'
+import { formatDate } from '@/helpers/formatDate'
 
 const props = defineProps<{
   transaction: Transaction | null
@@ -31,12 +32,6 @@ function onBackdropClick(event: MouseEvent) {
     dialog.value?.close()
   }
 }
-
-function formatDateTime(iso: string): string {
-  return new Intl.DateTimeFormat('en-IE', { dateStyle: 'long', timeStyle: 'short' }).format(
-    new Date(iso),
-  )
-}
 </script>
 
 <template>
@@ -49,9 +44,15 @@ function formatDateTime(iso: string): string {
   >
     <div v-if="transaction" class="p-4 sm:p-6">
       <div class="flex items-start justify-between gap-4">
-        <h2 id="transaction-details-title" class="text-lg font-semibold break-words text-gray-900">
-          {{ transaction.merchant }}
-        </h2>
+        <div class="min-w-0">
+          <p class="text-sm text-gray-500">Transaction details</p>
+          <h2
+            id="transaction-details-title"
+            class="m-1 text-lg font-semibold break-words text-gray-900"
+          >
+            {{ transaction.merchant }}
+          </h2>
+        </div>
         <button
           type="button"
           class="shrink-0 rounded-md px-2 py-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900"
@@ -78,14 +79,14 @@ function formatDateTime(iso: string): string {
         <div>
           <dt class="text-gray-500">Type</dt>
           <dd class="mt-1 text-gray-900">
-            {{ transaction.type === 'credit' ? 'Money in' : 'Money out' }}
+            {{ TRANSACTION_TYPE_LABELS[transaction.type] }}
           </dd>
         </div>
         <div>
           <dt class="text-gray-500">Date</dt>
           <dd class="mt-1 text-gray-900">
             <time :datetime="transaction.transactionDate">
-              {{ formatDateTime(transaction.transactionDate) }}
+              {{ formatDate(transaction.transactionDate) }}
             </time>
           </dd>
         </div>
@@ -103,7 +104,7 @@ function formatDateTime(iso: string): string {
         </div>
         <div>
           <dt class="text-gray-500">Reference</dt>
-          <dd class="mt-1 text-gray-900 tabular-nums">#{{ transaction.id }}</dd>
+          <dd class="mt-1 text-gray-900 tabular-nums">{{ transaction.reference }}</dd>
         </div>
       </dl>
     </div>

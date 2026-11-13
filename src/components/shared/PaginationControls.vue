@@ -23,9 +23,7 @@ const emit = defineEmits<{
       Previous
     </button>
 
-    <p class="text-gray-600" aria-live="polite">
-      Page {{ currentPage }} of {{ totalPages }}
-    </p>
+    <p class="text-gray-600" aria-live="polite">Page {{ currentPage }} of {{ totalPages }}</p>
 
     <button
       type="button"

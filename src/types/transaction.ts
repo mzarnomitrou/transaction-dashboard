@@ -4,6 +4,11 @@ export type TransactionStatus = (typeof TRANSACTION_STATUSES)[number]
 export const TRANSACTION_TYPES = ['credit', 'debit'] as const
 export type TransactionType = (typeof TRANSACTION_TYPES)[number]
 
+export const TRANSACTION_TYPE_LABELS: Record<TransactionType, string> = {
+  credit: 'Credit',
+  debit: 'Debit',
+}
+
 export type Transaction = {
   id: number
   amount: number
