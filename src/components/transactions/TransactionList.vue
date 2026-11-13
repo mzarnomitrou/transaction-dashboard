@@ -26,7 +26,7 @@ onMounted(() => {
 
 <template>
   <section
-    class="rounded-xl border border-gray-200 bg-white shadow-sm"
+    class="rounded-xl border border-gray-200 bg-white shadow-md"
     aria-labelledby="transactions-heading"
   >
     <h2

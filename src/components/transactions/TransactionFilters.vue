@@ -31,7 +31,7 @@ function clearFilters() {
 
 <template>
   <section
-    class="rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6"
+    class="rounded-xl border border-gray-200 bg-white p-4 shadow-md sm:p-6"
     aria-label="Filter and sort transactions"
   >
     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-6">
@@ -44,7 +44,7 @@ function clearFilters() {
           v-model="merchantFilter"
           type="search"
           placeholder="Search merchant"
-          class="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-gray-500 focus:outline-none"
+          class="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-emerald-500 focus:outline-none"
         />
       </div>
 

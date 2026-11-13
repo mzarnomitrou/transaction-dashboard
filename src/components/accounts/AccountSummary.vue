@@ -16,39 +16,36 @@ onMounted(() => {
 
 <template>
   <section
-    class="rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6"
+    class="rounded-xl bg-gradient-to-br from-emerald-600 to-teal-700 p-4 text-white shadow-sm sm:p-6"
     aria-labelledby="account-name"
   >
-    <p v-if="isLoading">
-      <LoadingState message="Loading Account Information..." />
-    </p>
-
-    <p v-else-if="error" class="text-red-500">
-      <ErrorState />
-    </p>
+    
+      <LoadingState v-if="isLoading" message="Loading Account Information..." />
+      <ErrorState v-else-if="error" :error-message="error"/>
+    
 
     <template v-else-if="account">
       <div class="flex flex-col items-center text-center">
-        <div class="min-w-0">
-          <h1 id="account-name" class="truncate text-lg font-semibold text-gray-900 sm:text-xl">
+        <div class="min-w-0 max-w-full">
+          <h1 id="account-name" class="truncate text-lg font-semibold text-white sm:text-xl">
             {{ account.name }}
           </h1>
         </div>
-        <span class="shrink-0 rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700">
+        <span class="mt-2 rounded-full bg-white/15 px-3 py-1 text-xs font-medium text-white">
           {{ account.currency }}
         </span>
       </div>
 
-      <dl class="mt-4 grid grid-cols-1 gap-4 sm:mt-6 sm:grid-cols-2">
+      <dl class="mx-auto mt-6 grid max-w-xl grid-cols-1 gap-6 text-center sm:grid-cols-2">
         <div>
-          <dt class="text-sm text-gray-500">Current balance</dt>
-          <dd class="mt-1 text-2xl font-semibold tabular-nums text-gray-900 sm:text-3xl">
+          <dt class="text-sm text-emerald-100">Current balance</dt>
+          <dd class="mt-1 text-2xl font-semibold text-white sm:text-3xl">
             <MoneyAmount :amount="account.currentBalance" :currency="account.currency" />
           </dd>
         </div>
         <div>
-          <dt class="text-sm text-gray-500">Available balance</dt>
-          <dd class="mt-1 text-2xl font-semibold tabular-nums text-gray-900 sm:text-3xl">
+          <dt class="text-sm text-emerald-100">Available balance</dt>
+          <dd class="mt-1 text-2xl font-semibold text-white sm:text-3xl">
             <MoneyAmount :amount="account.availableBalance" :currency="account.currency" />
           </dd>
         </div>
