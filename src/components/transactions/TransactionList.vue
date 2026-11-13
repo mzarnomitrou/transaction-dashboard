@@ -8,7 +8,7 @@ import TransactionItem from './TransactionItem.vue'
 import TransactionDetails from './TransactionDetails.vue'
 
 const transactionsStore = useTransactionsStore()
-const { transactions, isLoading, error } = storeToRefs(transactionsStore)
+const { transactions, isLoading, error, sortedTransactions } = storeToRefs(transactionsStore)
 
 const accountStore = useAccountStore()
 const { account } = storeToRefs(accountStore)
@@ -46,7 +46,7 @@ onMounted(() => {
 
     <ul v-else class="divide-y divide-gray-100">
       <TransactionItem
-        v-for="transaction in transactions"
+        v-for="transaction in sortedTransactions"
         :key="transaction.id"
         :transaction="transaction"
         :account-currency="account?.currency"
