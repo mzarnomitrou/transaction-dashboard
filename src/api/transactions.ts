@@ -9,7 +9,7 @@ function wait(ms: number): Promise<void> {
 }
 
 export async function fetchTransactions(): Promise<Transaction[]> {
-  await wait(800)
+  await wait(1800)
 
   if (SHOULD_FAIL) {
     throw new Error('Failed to load Transactions')
