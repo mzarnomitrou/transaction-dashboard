@@ -19,10 +19,8 @@ onMounted(() => {
     class="rounded-xl bg-gradient-to-br from-emerald-600 to-teal-700 p-4 text-white shadow-sm sm:p-6"
     aria-labelledby="account-name"
   >
-    
-      <LoadingState v-if="isLoading" message="Loading Account Information..." />
-      <ErrorState v-else-if="error" :error-message="error"/>
-    
+    <LoadingState v-if="isLoading" message="Loading Account Information..." />
+    <ErrorState v-else-if="error" :error-message="error" />
 
     <template v-else-if="account">
       <div class="flex flex-col items-center text-center">
