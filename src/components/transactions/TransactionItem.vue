@@ -6,7 +6,7 @@ import { formatDate } from '@/helpers/formatDate'
 
 defineProps<{
   transaction: Transaction
-  accountCurrency?: string
+  accountCurrency: string
 }>()
 
 const emit = defineEmits<{
@@ -41,10 +41,10 @@ const emit = defineEmits<{
           class="font-semibold"
           :class="{ 'text-gray-400 line-through': transaction.status === 'declined' }"
         />
-        <!-- Remove hardcoded EUR this should come from the account info-->
-        <p v-if="transaction.currency !== 'EUR'" class="mt-1 text-xs tabular-nums text-gray-500">
-          ≈ <MoneyAmount :amount="transaction.accountAmount" currency="EUR" />
-        </p>
+      
+        <!-- <p v-if="transaction.currency !== accountCurrency" class="mt-1 text-xs tabular-nums text-gray-500">
+          ≈ <MoneyAmount :amount="transaction.accountAmount" :currency="accountCurrency" />
+        </p> -->
       </div>
     </button>
   </li>

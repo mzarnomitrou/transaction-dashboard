@@ -2,9 +2,9 @@
 import { storeToRefs } from 'pinia'
 import { useAccountStore } from '@/stores/account'
 import { onMounted } from 'vue'
-import { formatMoney } from '@/helpers/formatMoney'
 import LoadingState from '../shared/LoadingState.vue'
 import ErrorState from '../shared/ErrorState.vue'
+import MoneyAmount from '../shared/MoneyAmount.vue'
 
 const accountStore = useAccountStore()
 const { account, isLoading, error } = storeToRefs(accountStore)
@@ -28,9 +28,8 @@ onMounted(() => {
     </p>
 
     <template v-else-if="account">
-      <div class="flex items-start justify-between gap-4">
+      <div class="flex flex-col items-center text-center">
         <div class="min-w-0">
-          <p class="text-sm text-gray-500">Account</p>
           <h1 id="account-name" class="truncate text-lg font-semibold text-gray-900 sm:text-xl">
             {{ account.name }}
           </h1>
@@ -44,15 +43,14 @@ onMounted(() => {
         <div>
           <dt class="text-sm text-gray-500">Current balance</dt>
           <dd class="mt-1 text-2xl font-semibold tabular-nums text-gray-900 sm:text-3xl">
-            {{ formatMoney(account.currentBalance, account.currency) }}
+            <MoneyAmount :amount="account.currentBalance" :currency="account.currency" />
           </dd>
         </div>
         <div>
           <dt class="text-sm text-gray-500">Available balance</dt>
-          <dd class="mt-1 text-xl font-medium tabular-nums text-gray-700 sm:text-2xl">
-            {{ formatMoney(account.availableBalance, account.currency) }}
+          <dd class="mt-1 text-2xl font-semibold tabular-nums text-gray-900 sm:text-3xl">
+            <MoneyAmount :amount="account.availableBalance" :currency="account.currency" />
           </dd>
-          <p class="mt-1 text-xs text-gray-500">Excludes pending payments</p>
         </div>
       </dl>
     </template>
