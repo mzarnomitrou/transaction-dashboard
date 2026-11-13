@@ -24,7 +24,7 @@ onMounted(() => {
     </p>
 
     <p v-else-if="error" class="text-red-500">
-      <ErrorState/>
+      <ErrorState />
     </p>
 
     <template v-else-if="account">

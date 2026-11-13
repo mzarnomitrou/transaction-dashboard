@@ -8,10 +8,12 @@ import TransactionItem from './TransactionItem.vue'
 import TransactionDetails from './TransactionDetails.vue'
 import LoadingState from '../shared/LoadingState.vue'
 import ErrorState from '../shared/ErrorState.vue'
+import PaginationControls from '../shared/PaginationControls.vue'
+import { usePagination } from '@/composables/usePagination'
 
 const transactionsStore = useTransactionsStore()
 const { transactions, isLoading, error, sortedTransactions } = storeToRefs(transactionsStore)
-
+const { currentPage, totalPages, paginatedItems, setPage } = usePagination(sortedTransactions)
 const accountStore = useAccountStore()
 const { account } = storeToRefs(accountStore)
 
@@ -34,34 +36,39 @@ onMounted(() => {
       Recent transactions
     </h2>
 
-    <p v-if="isLoading">
-      <LoadingState message="Loading Transactions..." />
-    </p>
+    <LoadingState v-if="isLoading" message="Loading transactions..." />
 
-    <p v-else-if="error" class="px-4 py-8 text-center text-red-600 sm:px-6">
-      <ErrorState />
-    </p>
+    <ErrorState v-else-if="error" />
 
+    <p v-else-if="transactions.length === 0" class="px-4 py-8 text-center text-gray-500 sm:px-6">
+      No transactions yet.
+    </p>
     <p
       v-else-if="sortedTransactions.length === 0"
       class="px-4 py-8 text-center text-gray-500 sm:px-6"
     >
-      No transactions yet.
+      No transactions match your filters.
     </p>
 
     <ul v-else class="divide-y divide-gray-100">
       <TransactionItem
-        v-for="transaction in sortedTransactions"
+        v-for="transaction in paginatedItems"
         :key="transaction.id"
         :transaction="transaction"
         :account-currency="account?.currency"
         @select="selectedTransaction = $event"
       />
-      <TransactionDetails
-        :transaction="selectedTransaction"
-        :account-currency="account?.currency"
-        @close="selectedTransaction = null"
-      />
     </ul>
+    <TransactionDetails
+      :transaction="selectedTransaction"
+      :account-currency="account?.currency"
+      @close="selectedTransaction = null"
+    />
   </section>
+  <PaginationControls
+    v-if="totalPages > 1"
+    :current-page="currentPage"
+    :total-pages="totalPages"
+    @change="setPage"
+  />
 </template>
