@@ -1,11 +1,7 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import DashboardView from '@/views/DashboardView.vue'
+</script>
 
 <template>
-  <h1>You did it!</h1>
-  <p class="text-red-600">
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <DashboardView />
 </template>
-
-<style scoped></style>
