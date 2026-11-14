@@ -45,7 +45,7 @@ function onBackdropClick(event: MouseEvent) {
     <div v-if="transaction" class="p-4 sm:p-6">
       <div class="relative text-center">
         <div class="min-w-0">
-          <p class="px-10 text-xl font-semibold text-emerald-700">Transaction details</p>
+          <h2 id="transaction-details-title" class="px-10 text-xl font-semibold text-emerald-700">Transaction details</h2>
         </div>
         <button
           type="button"
@@ -57,28 +57,32 @@ function onBackdropClick(event: MouseEvent) {
         </button>
       </div>
 
-      <MoneyAmount
-        :amount="transaction.amount"
-        :currency="transaction.currency"
-        :direction="transaction.type === 'credit' ? 'in' : 'out'"
-        class="mt-2 block text-sm font-semibold"
-        :class="{ 'text-gray-400 line-through': transaction.status === 'declined' }"
-      />
+      <div
+        class="mt-4 flex items-start justify-between gap-4 rounded-lg border border-gray-200 bg-gray-50 p-4 text-sm shadow-sm shadow-emerald-900/10"
+      >
+        <p class="min-w-0 font-semibold break-words text-gray-900">
+          {{ transaction.merchant }}
+        </p>
+        <MoneyAmount
+          :amount="transaction.amount"
+          :currency="transaction.currency"
+          :direction="transaction.type === 'credit' ? 'in' : 'out'"
+          class="shrink-0 font-semibold"
+          :class="{ 'text-gray-400 line-through': transaction.status === 'declined' }"
+        />
+      </div>
 
-      <dl class="mt-6 space-y-4 text-sm">
-        <div>
-          <dt class="text-gray-500">Merchant</dt>
-          <dd class="mt-1 break-words text-gray-900">{{ transaction.merchant }}</dd>
-        </div>
-        <div>
-          <dt class="text-gray-500">Status</dt>
-          <dd class="mt-1"><TransactionStatusBadge :status="transaction.status" /></dd>
-        </div>
-        <div>
-          <dt class="text-gray-500">Type</dt>
-          <dd class="mt-1 text-gray-900">
-            {{ TRANSACTION_TYPE_LABELS[transaction.type] }}
-          </dd>
+    
+      <dl class="mt-4 space-y-4 rounded-lg border border-gray-200 p-4 text-sm shadow-sm shadow-emerald-900/10">
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <dt class="text-gray-500">Type</dt>
+            <dd class="mt-1 text-gray-900">{{ TRANSACTION_TYPE_LABELS[transaction.type] }}</dd>
+          </div>
+          <div>
+            <dt class="text-gray-500">Status</dt>
+            <dd class="mt-1"><TransactionStatusBadge :status="transaction.status" /></dd>
+          </div>
         </div>
         <div>
           <dt class="text-gray-500">Date</dt>
@@ -86,12 +90,6 @@ function onBackdropClick(event: MouseEvent) {
             <time :datetime="transaction.transactionDate">
               {{ formatDate(transaction.transactionDate) }}
             </time>
-          </dd>
-        </div>
-        <div v-if="accountCurrency && transaction.currency !== accountCurrency">
-          <dt class="text-gray-500">Charged to account</dt>
-          <dd class="mt-1 text-gray-900">
-            <MoneyAmount :amount="transaction.accountAmount" :currency="accountCurrency" />
           </dd>
         </div>
         <div>

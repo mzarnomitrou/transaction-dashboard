@@ -2,10 +2,12 @@
 import { computed } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useTransactionsStore } from '@/stores/transaction'
-import { TRANSACTION_STATUSES,
+import {
+  TRANSACTION_STATUSES,
   TRANSACTION_TYPES,
   TRANSACTION_STATUS_LABELS,
-  TRANSACTION_TYPE_LABELS, } from '@/types/transaction'
+  TRANSACTION_TYPE_LABELS,
+} from '@/types/transaction'
 
 const transactionsStore = useTransactionsStore()
 const { transactions, sortedTransactions, merchantFilter, statusFilter, typeFilter } =
