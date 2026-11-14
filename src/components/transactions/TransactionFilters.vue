@@ -2,7 +2,10 @@
 import { computed } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useTransactionsStore } from '@/stores/transaction'
-import { TRANSACTION_STATUSES, TRANSACTION_TYPES } from '@/types/transaction'
+import { TRANSACTION_STATUSES,
+  TRANSACTION_TYPES,
+  TRANSACTION_STATUS_LABELS,
+  TRANSACTION_TYPE_LABELS, } from '@/types/transaction'
 
 const transactionsStore = useTransactionsStore()
 const { transactions, sortedTransactions, merchantFilter, statusFilter, typeFilter } =
@@ -50,7 +53,7 @@ function clearFilters() {
         >
           <option value="all">All</option>
           <option v-for="status in TRANSACTION_STATUSES" :key="status" :value="status">
-            {{ status }}
+            {{ TRANSACTION_STATUS_LABELS[status] }}
           </option>
         </select>
       </div>
@@ -64,7 +67,7 @@ function clearFilters() {
         >
           <option value="all">All</option>
           <option v-for="type in TRANSACTION_TYPES" :key="type" :value="type">
-            {{ type }}
+            {{ TRANSACTION_TYPE_LABELS[type] }}
           </option>
         </select>
       </div>

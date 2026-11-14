@@ -8,6 +8,11 @@ export const TRANSACTION_TYPE_LABELS: Record<TransactionType, string> = {
   credit: 'Credit',
   debit: 'Debit',
 }
+export const TRANSACTION_STATUS_LABELS: Record<TransactionStatus, string> = {
+  completed: 'Completed',
+  pending: 'Pending',
+  declined: 'Declined',
+}
 
 export type Transaction = {
   id: number
