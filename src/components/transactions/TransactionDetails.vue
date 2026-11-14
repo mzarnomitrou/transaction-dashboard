@@ -91,7 +91,7 @@ function onBackdropClick(event: MouseEvent) {
           <dt class="text-gray-500">Date</dt>
           <dd class="mt-1 text-gray-900">
             <time :datetime="transaction.transactionDate">
-              {{ formatDate(transaction.transactionDate) }}
+              {{ formatDate(transaction.transactionDate) ?? '-' }}
             </time>
           </dd>
         </div>
