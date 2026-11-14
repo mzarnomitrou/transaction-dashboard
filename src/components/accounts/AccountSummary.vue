@@ -28,6 +28,9 @@ onMounted(() => {
           <h1 id="account-name" class="truncate text-lg font-semibold text-white sm:text-xl">
             {{ account.name }}
           </h1>
+          <p class="mt-1 text-sm text-emerald-100">
+  {{ account.holderName }} · •••• {{ account.accountNumber.slice(-4) }}
+</p>
         </div>
         <span class="mt-2 rounded-full bg-white/15 px-3 py-1 text-xs font-medium text-white">
           {{ account.currency }}

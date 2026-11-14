@@ -1,6 +1,8 @@
 {
   "id": 21,
   "name": "Savings",
+  "holderName": "Marios Ioannou",
+  "accountNumber": "CY07002001281043321819600133",
   "currentBalance": 2340000,
   "availableBalance": 2331289,
   "currency": "EUR"
