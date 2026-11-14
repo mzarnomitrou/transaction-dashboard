@@ -45,7 +45,9 @@ function onBackdropClick(event: MouseEvent) {
     <div v-if="transaction" class="p-4 sm:p-6">
       <div class="relative text-center">
         <div class="min-w-0">
-          <h2 id="transaction-details-title" class="px-10 text-xl font-semibold text-emerald-700">Transaction details</h2>
+          <h2 id="transaction-details-title" class="px-10 text-xl font-semibold text-emerald-700">
+            Transaction details
+          </h2>
         </div>
         <button
           type="button"
@@ -72,8 +74,9 @@ function onBackdropClick(event: MouseEvent) {
         />
       </div>
 
-    
-      <dl class="mt-4 space-y-4 rounded-lg border border-gray-200 p-4 text-sm shadow-sm shadow-emerald-900/10">
+      <dl
+        class="mt-4 space-y-4 rounded-lg border border-gray-200 p-4 text-sm shadow-sm shadow-emerald-900/10"
+      >
         <div class="grid grid-cols-2 gap-4">
           <div>
             <dt class="text-gray-500">Type</dt>
