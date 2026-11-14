@@ -43,35 +43,34 @@ function onBackdropClick(event: MouseEvent) {
     @click="onBackdropClick"
   >
     <div v-if="transaction" class="p-4 sm:p-6">
-      <div class="flex items-start justify-between gap-4">
+      <div class="relative text-center">
         <div class="min-w-0">
-          <p class="text-sm text-gray-500">Transaction details</p>
-          <h2
-            id="transaction-details-title"
-            class="m-1 text-lg font-semibold break-words text-gray-900"
-          >
-            {{ transaction.merchant }}
-          </h2>
+          <p class="px-10 text-xl font-semibold text-emerald-700">Transaction details</p>
         </div>
         <button
           type="button"
-          class="shrink-0 rounded-md px-2 py-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900"
+          class="absolute top-0 right-0 rounded-md px-2 py-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900"
           aria-label="Close details"
           @click="dialog?.close()"
         >
           ✕
         </button>
       </div>
-
+    
       <MoneyAmount
         :amount="transaction.amount"
         :currency="transaction.currency"
         :direction="transaction.type === 'credit' ? 'in' : 'out'"
-        class="mt-2 block text-2xl font-semibold"
+        class="mt-2 block text-sm font-semibold"
         :class="{ 'text-gray-400 line-through': transaction.status === 'declined' }"
-      />
+      /> 
+      
 
       <dl class="mt-6 space-y-4 text-sm">
+        <div>
+          <dt class="text-gray-500">Merchant</dt>
+          <dd class="mt-1 break-words text-gray-900">{{ transaction.merchant }}</dd>
+        </div>
         <div>
           <dt class="text-gray-500">Status</dt>
           <dd class="mt-1"><TransactionStatusBadge :status="transaction.status" /></dd>
