@@ -3,6 +3,7 @@ import TransactionStatusBadge from './TransactionStatusBadge.vue'
 import MoneyAmount from '@/components/shared/MoneyAmount.vue'
 import type { Transaction } from '@/types/transaction'
 import { formatDate } from '@/helpers/formatDate'
+import { formatMoney } from '@/helpers/formatMoney.ts'
 
 defineProps<{
   transaction: Transaction
@@ -43,7 +44,7 @@ const emit = defineEmits<{
         />
 
         <p
-          v-if="accountCurrency && transaction.currency !== accountCurrency"
+          v-if="accountCurrency && transaction.currency !== accountCurrency && (formatMoney(transaction.amount, transaction.currency) !== null)"
           class="mt-1 text-xs tabular-nums text-gray-500"
         >
           (<MoneyAmount :amount="transaction.accountAmount" :currency="accountCurrency" />)
