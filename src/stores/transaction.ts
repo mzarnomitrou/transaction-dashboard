@@ -3,7 +3,6 @@ import { ref, computed } from 'vue'
 import type { Transaction } from '@/types/transaction'
 import { fetchTransactions } from '@/api/transactions'
 import type { StatusFilter, TypeFilter, SortDirection, SortField } from '@/types/transactionFilters'
-import { signedAmount } from '@/helpers/signedAmount'
 import { compareTransactions } from '@/helpers/compareTransactions'
 
 export const useTransactionsStore = defineStore('transactions', () => {

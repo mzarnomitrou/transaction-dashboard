@@ -56,15 +56,14 @@ function onBackdropClick(event: MouseEvent) {
           ✕
         </button>
       </div>
-    
+
       <MoneyAmount
         :amount="transaction.amount"
         :currency="transaction.currency"
         :direction="transaction.type === 'credit' ? 'in' : 'out'"
         class="mt-2 block text-sm font-semibold"
         :class="{ 'text-gray-400 line-through': transaction.status === 'declined' }"
-      /> 
-      
+      />
 
       <dl class="mt-6 space-y-4 text-sm">
         <div>

@@ -42,9 +42,12 @@ const emit = defineEmits<{
           :class="{ 'text-gray-400 line-through': transaction.status === 'declined' }"
         />
 
-        <!-- <p v-if="transaction.currency !== accountCurrency" class="mt-1 text-xs tabular-nums text-gray-500">
-          ≈ <MoneyAmount :amount="transaction.accountAmount" :currency="accountCurrency" />
-        </p> -->
+        <p
+          v-if="accountCurrency && transaction.currency !== accountCurrency"
+          class="mt-1 text-xs tabular-nums text-gray-500"
+        >
+          (<MoneyAmount :amount="transaction.accountAmount" :currency="accountCurrency" />)
+        </p>
       </div>
     </button>
   </li>

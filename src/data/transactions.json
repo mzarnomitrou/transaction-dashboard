@@ -18,7 +18,7 @@
     "description": "Food delivery - awaiting merchant confirmation",
     "transactionDate": "2026-11-11T19:55:20Z",
     "amount": 5000,
-    "currency": "EUROO",
+    "currency": "EUR",
     "accountAmount": 5000,
     "type": "debit",
     "status": "pending"

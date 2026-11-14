@@ -41,7 +41,7 @@ onMounted(() => {
 
     <LoadingState v-if="isLoading" message="Loading transactions..." />
 
-    <ErrorState v-else-if="error" />
+    <ErrorState v-else-if="error" :error-message="error" />
 
     <p v-else-if="transactions.length === 0" class="px-4 py-8 text-center text-gray-500 sm:px-6">
       No transactions yet.
@@ -67,11 +67,11 @@ onMounted(() => {
       :account-currency="account?.currency"
       @close="selectedTransaction = null"
     />
+    <PaginationControls
+      v-if="totalPages > 1"
+      :current-page="currentPage"
+      :total-pages="totalPages"
+      @change="setPage"
+    />
   </section>
-  <PaginationControls
-    v-if="totalPages > 1"
-    :current-page="currentPage"
-    :total-pages="totalPages"
-    @change="setPage"
-  />
 </template>

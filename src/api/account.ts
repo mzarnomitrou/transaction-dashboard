@@ -3,7 +3,6 @@ import accountInfo from '@/data/account.json'
 
 const SHOULD_FAIL = false
 
-//add it as helper function later
 function wait(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms))
 }
